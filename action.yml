@@ -1,0 +1,37 @@
+name: 'Switch Action'
+description: 'GitHub workflow to send message on switch.'
+inputs:
+  token:
+    description: "Switch's bot token"
+    required: true
+  message:
+    description: message to send on switch.
+  document:
+    description: file path to send
+  description:
+    description: file's description
+  channel_id:
+    description: Switch's channel ID.
+  group_id:
+    description: Switch'S Group ID.
+  user_id:
+    description: Switch'S User ID.
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'  
+    - name: Install Dependencies
+      run: pip install -r requirements.txt
+      shell: bash
+    - name: Pass Inputs to Shell
+      run: |
+              echo "INPUT_NUM=${{ inputs.num }}" >> $GITHUB_ENV
+      shell: bash
+    - name: Run the script
+      id: switch-action
+      run: postswitch.py
+      shell: bash

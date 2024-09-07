@@ -9,7 +9,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: send custom message with args
-      uses: ./
+    - name: send message
+      uses: "./"
       with:
-        token: ""
+        token: ${{ secrets.BOT_TOKEN }}
+        message: "Hi"
+        user_id: 972
+    - name: Get cat image
+      run: |
+        wget -O cat.png https://cataas.com/cat
+
+    - name: send media file
+      uses: "./"
+      with:
+        token: ${{ secrets.BOT_TOKEN }}
+        message: "CheckOut this cool cat!"
+        thumb: 'cat.png'
+        document: 'cat.png'
+        user_id: 972
+        button_text: "Hello User"
+        button_url: "https://github.com/New-dev0"
+

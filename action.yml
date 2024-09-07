@@ -10,12 +10,18 @@ inputs:
     description: file path to send
   description:
     description: file's description
+  thumb:
+    description: path to thumb
   channel_id:
     description: Switch's channel ID.
   group_id:
     description: Switch'S Group ID.
   user_id:
     description: Switch'S User ID.
+  button_text:
+    description: Text to display on the button
+  button_url:
+    description: URL to open when the button is clicked
 
 runs:
   using: docker
